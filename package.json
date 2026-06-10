@@ -22,11 +22,13 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "openweather-api-node": "^3.1.5",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@modelcontextprotocol/inspector": "^0.22.0",
+    "@types/express": "^5.0.6",
     "@types/node": "^25.9.2",
     "typescript": "^6.0.3"
   }
