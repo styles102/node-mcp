@@ -4,8 +4,8 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { randomUUID } from 'crypto';
 import 'dotenv/config';
 import express from 'express';
-import { addTool } from "./tools/opperations/add.js";
-import { divideTool } from "./tools/opperations/divide.js";
+import { addTool } from "./tools/operations/add.js";
+import { divideTool } from "./tools/operations/divide.js";
 import { weatherTool } from "./tools/weather/weather.js";
 
 const server = new McpServer({
