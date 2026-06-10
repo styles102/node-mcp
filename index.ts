@@ -1,30 +1,15 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { z } from "zod";
-import { toolHandler } from "./toolHandler.js";
+import { addTool } from "./tools/opperations/add.js";
+import { divideTool } from "./tools/opperations/divide.js";
 
 const server = new McpServer({
 	name: 'node-mcp-server',
 	version: '1.0.0'
 });
 
-server.registerTool(
-	'add',
-	{
-		title: 'Add tool',
-		description: 'Adds two number together and returns the result',
-		inputSchema: { numOne: z.number(), numTwo: z.number() },
-		outputSchema: { result: z.string() }
-	},
-	toolHandler(async ({ numOne, numTwo }) => {
-		const total = numOne + numTwo;
-		const output = { result: `${numOne} + ${numTwo} = ${total}`};
-		return {
-			content: [{ type: "text", text: JSON.stringify(output) }],
-			structuredContent: output 
-		}
-	})
-)
+addTool(server);
+divideTool(server);
 
 const transport = new StdioServerTransport();
 await server.connect(transport);
