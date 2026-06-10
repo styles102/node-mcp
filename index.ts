@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import { toolHandler } from "./toolHandler.js";
 
 const server = new McpServer({
 	name: 'node-mcp-server',
@@ -15,14 +16,14 @@ server.registerTool(
 		inputSchema: { numOne: z.number(), numTwo: z.number() },
 		outputSchema: { result: z.string() }
 	},
-	async({ numOne, numTwo }) => {
+	toolHandler(async ({ numOne, numTwo }) => {
 		const total = numOne + numTwo;
 		const output = { result: `${numOne} + ${numTwo} = ${total}`};
 		return {
 			content: [{ type: "text", text: JSON.stringify(output) }],
 			structuredContent: output 
 		}
-	}
+	})
 )
 
 const transport = new StdioServerTransport();
