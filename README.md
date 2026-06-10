@@ -148,14 +148,18 @@ Divides two numbers and returns the result. Both inputs must be positive — val
 
 ### `weather`
 
-Returns current weather data for a given coordinate using the OpenWeatherMap API. Results are in metric units.
+Returns current weather data for a location using the OpenWeatherMap API. Results are in metric units.
 
-**Inputs**
+Supply **one** of the following location strategies:
 
-| Name  | Type                 | Description |
-|-------|----------------------|-------------|
-| `lat` | number (-90 to 90)   | Latitude    |
-| `lng` | number (-180 to 180) | Longitude   |
+| Name           | Type                 | Description                              |
+|----------------|----------------------|------------------------------------------|
+| `lat`          | number (-90 to 90)   | Latitude (use with `lng`)                |
+| `lng`          | number (-180 to 180) | Longitude (use with `lat`)               |
+| `locationName` | string               | City or place name (e.g. `"London"`)     |
+| `zipCode`      | string               | Zip/postal code (e.g. `"90210"`)         |
+
+Priority order when multiple are provided: coordinates → zip code → location name. At least one strategy must be supplied or the tool returns an error.
 
 **Output**
 
